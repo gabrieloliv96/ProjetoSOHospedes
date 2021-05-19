@@ -1,3 +1,4 @@
+package hotel;
 //package hotel;
 //
 //import javax.swing.*;

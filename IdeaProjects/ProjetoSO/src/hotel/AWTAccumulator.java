@@ -1,3 +1,4 @@
+package hotel;
 //package hotel;
 //
 //import java.awt.*;        // Using AWT container and component classes

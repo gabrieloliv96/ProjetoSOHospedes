@@ -22,6 +22,7 @@ public class Principal {
         int tempoDescanso;
         int canais = 1;
         int canalAssistido = 0;
+        Semaphore semaphore = new Semaphore(1);
 
         // Teste
 //        System.out.println("Insira o id do hospede: ");
@@ -55,24 +56,25 @@ public class Principal {
 //        System.out.println(hospede.getTempoTv());
 //        System.out.println(hospede.getTempoDescansar());
 //            Hospede hospede = new Hospede();
-            if(canalAssistido==0 || canalAssistido==hospede.getCanal()) {
+
+//            if(canalAssistido==0 || canalAssistido==hospede.getCanal()) {
                 canalAssistido = hospede.getCanal();
-                canais++;
-                Semaphore semaphore = new Semaphore(canais);
                 String nomeThread = "Hóspede" + hospede.getId();
-                Televisao televisao = new Televisao();
-                Thread hospedeThread = new Thread(new ThreadHospede(televisao, hospede, semaphore, canais, canalAssistido), "Hospede " + hospede.getId());
+                Thread hospedeThread = new Thread(new ThreadHospede(hospede, semaphore, canalAssistido), "Hospede " + hospede.getId());
                 hospedeThread.start();
 
-                canais--;
-            }else {
+//                Televisao televisao = new Televisao();
+//                canais++;
+//                canais--;
 
-                Semaphore semaphore = new Semaphore(canais);
-                String nomeThread = "Hóspede" + hospede.getId();
-                Televisao televisao = new Televisao();
-                Thread hospedeThread = new Thread(new ThreadHospede(televisao, hospede, semaphore, canal, canalAssistido), "Hospede " + hospede.getId());
-                hospedeThread.start();
-            }
+//            }else {
+//
+////                Semaphore semaphore = new Semaphore(canais);
+//                String nomeThread = "Hóspede" + hospede.getId();
+////                Televisao televisao = new Televisao();
+//                Thread hospedeThread = new Thread(new ThreadHospede(hospede, semaphore, canalAssistido), "Hospede " + hospede.getId());
+//                hospedeThread.start();
+//            }
         }
     }
 //    @Override
